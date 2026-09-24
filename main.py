@@ -33,7 +33,7 @@ async def chat_with_ai(request: ChatRequest):
     try:
         # यहाँ हम दुनिया का सबसे तेज़ ओपन-सोर्स मॉडल (Llama-3.3-70b या DeepSeek) कॉल कर रहे हैं
         completion = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system", "content": "You are a helpful AI assistant like ChatGPT."},
                 *USER_DATABASE[uid]["history"]
