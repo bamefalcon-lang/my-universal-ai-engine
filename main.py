@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-import datetime
+from datetime import date
 from groq import Groq  # असली AI दिमाग के लिए
 
 app = FastAPI(title="My Custom Advanced AI Engine")
@@ -52,7 +52,7 @@ async def chat_with_ai(request: ChatRequest):
 @app.post("/v1/generate-image")
 async def generate_ai_image(request: ImageRequest):
     uid = request.user_id
-    today = datetime.date.today()
+    today = date.today()
     
     if uid not in USER_DATABASE:
         USER_DATABASE[uid] = {"history": [], "image_count": 0, "last_date": today}
