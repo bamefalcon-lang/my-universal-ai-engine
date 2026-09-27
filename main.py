@@ -28,6 +28,9 @@ class ImageRequest(BaseModel):
     prompt: str
 
 # 1. असली टेक्स्ट चैट (ChatGPT जैसा सोचने वाला दिमाग 🧠)
+@app.options("/v1/chat")
+async def options_chat(): return {}
+
 @app.post("/v1/chat")
 async def chat_with_ai(request: ChatRequest):
     uid = request.user_id
@@ -57,6 +60,9 @@ async def chat_with_ai(request: ChatRequest):
     return {"status": "success", "response": ai_response, "chat_history": USER_DATABASE[uid]["history"]}
 
 # 2. असली इमेज जनरेशन (Flux Model के साथ 🎨)
+@app.options("/v1/generate-image")
+async def options_image(): return {}
+
 @app.post("/v1/generate-image")
 async def generate_ai_image(request: ImageRequest):
     uid = request.user_id
