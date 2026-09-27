@@ -2,8 +2,16 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from datetime import date
 from groq import Groq  # असली AI दिमाग के लिए
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="My Custom Advanced AI Engine")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # 🔴 अपनी Groq API Key यहाँ पेस्ट करें (जो आपने स्टेप 2 में बनाई थी)
 GROQ_API_KEY = "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"
